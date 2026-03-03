@@ -3,50 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbearia Estilo - Agende seu horário</title>
+    <title>Barbearia Estilo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <section class="hero">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=300" class="perfil-barbeiro">
         <h1>BARBEARIA ESTILO</h1>
-        <p>O melhor corte da região, no seu horário.</p>
         <div class="actions">
-            <button class="btn-primary" onclick="prepareNew()">Agendar Horário</button>
-            <button class="btn-secondary" onclick="openModal('modalMeusCortes')">Meus Agendamentos</button>
+            <button class="btn-primary" onclick="openNewModal()">AGENDAR HORÁRIO</button>
+            <button class="btn-primary" style="background:transparent; border:1px solid var(--gold); color:var(--gold)" onclick="openModal('modalMeusCortes')">MEUS CORTES</button>
         </div>
     </section>
 
-    <div id="modalAgendar" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modalAgendar')">&times;</span>
-            <h3 id="modalTitle">Novo Agendamento</h3>
+    <div id="modalAgendar" class="modal" onclick="closeOnClickOutside(event, 'modalAgendar')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span style="float:right; cursor:pointer" onclick="closeModal('modalAgendar')">&times;</span>
+            <h3 id="modalTitle">Agendar</h3>
             <form id="formAgendamento">
                 <input type="hidden" id="editId">
-                <label>Seu Nome</label>
-                <input type="text" id="nome" placeholder="Ex: João Silva" required>
-                <label>Data</label>
-                <input type="date" id="data" required>
-                <label>Horário</label>
+                <input type="text" id="nome" placeholder="Seu Nome" required>
+                
+                <div class="input-container">
+                    <input type="text" id="data" placeholder="DD/MM/AAAA" maxlength="10" required>
+                    <img src="https://cdn-icons-png.flaticon.com/512/591/591576.png" class="custom-cal-icon" onclick="toggleCal()">
+                    
+                    <div id="popup-calendar" class="calendar-popup">
+                        <div class="cal-header">
+                            <button type="button" onclick="changeMonth(-1)" style="background:none; color:white;">◀</button>
+                            <span id="calMonthYear"></span>
+                            <button type="button" onclick="changeMonth(1)" style="background:none; color:white;">▶</button>
+                        </div>
+                        <div class="cal-grid" id="gridCliente"></div>
+                    </div>
+                </div>
+
                 <select id="horario" required></select>
-                <label>Serviço</label>
+                
                 <select id="servico" required>
                     <option value="30">Corte Simples - R$ 30</option>
-                    <option value="15">Barba - R$ 15</option>
-                    <option value="10">Sobrancelha - R$ 10</option>
                     <option value="45">Cabelo + Barba - R$ 45</option>
-                    <option value="40">Cabelo + Sobrancelha - R$ 40</option>
-                    <option value="55">Cabelo + Barba + Sobrancelha - R$ 55</option>
+                    <option value="15">Sobrancelha - R$ 15</option>
+                    <option value="20">Barba - R$ 20</option>
+                    <option value="10">Pezinho - R$ 10</option>
                 </select>
-                <button type="submit" class="btn-confirmar">Salvar Agendamento</button>
+                <button type="submit" class="btn-primary" style="width:100%;">CONFIRMAR</button>
             </form>
         </div>
     </div>
 
-    <div id="modalMeusCortes" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modalMeusCortes')">&times;</span>
-            <h3>Seus Agendamentos</h3>
+    <div id="modalMeusCortes" class="modal" onclick="closeOnClickOutside(event, 'modalMeusCortes')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span style="float:right; cursor:pointer" onclick="closeModal('modalMeusCortes')">&times;</span>
+            <h3>Meus Agendamentos</h3>
             <div id="listaMeusAgendamentos"></div>
         </div>
     </div>
