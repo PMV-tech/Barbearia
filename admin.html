@@ -3,36 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Barbeiro - Controle</title>
+    <title>Painel Admin</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="admin-container">
-        <h2 style="color: var(--gold);">Controle Financeiro & Agenda</h2>
+        <h2 style="color:var(--gold)">Painel do Barbeiro</h2>
         
-        <div class="stats-row">
-            <div class="card-stat">
-                <h3>Ganhos Pendentes</h3>
-                <p id="ganhosPendentes">R$ 0,00</p>
-            </div>
-            <div class="card-stat">
-                <h3>Total Concluído</h3>
-                <p id="totalGanhos">R$ 0,00</p>
+        <div class="stats-grid">
+            <div class="card-stat"><h4>A Receber</h4><p id="totalP">R$ 0</p></div>
+            <div class="card-stat"><h4>Faturamento</h4><p id="totalC">R$ 0</p></div>
+        </div>
+
+        <button id="cal-toggle" class="btn-cal-toggle" onclick="toggleCalAdmin()">Abrir calendário</button>
+
+        <div id="cal-area-admin" style="display:none;">
+            <div class="calendar-box">
+                <div class="cal-header">
+                    <button onclick="moveMonthAdmin(-1)" style="background:none; border:none; color:white">◀</button>
+                    <span id="monthYearAdmin" style="text-transform: capitalize;"></span>
+                    <button onclick="moveMonthAdmin(1)" style="background:none; border:none; color:white">▶</button>
+                </div>
+                <div class="cal-grid" id="grid-admin"></div>
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
-            <section>
-                <h3 style="border-left: 4px solid var(--gold); padding-left: 10px;">Cortes Pendentes</h3>
-                <div id="listaPendentesAdmin"></div>
-            </section>
-            <section>
-                <h3 style="border-left: 4px solid var(--success); padding-left: 10px;">Histórico Concluído</h3>
-                <div id="listaConcluidosAdmin"></div>
-            </section>
+        <div class="tab-nav">
+            <button id="tab-agenda" class="tab-btn active" onclick="setTab('agenda')">AGENDADOS</button>
+            <button id="tab-his" class="tab-btn" onclick="setTab('historico')">HISTÓRICO</button>
         </div>
+
+        <div id="lista-admin"></div>
     </div>
-
     <script src="admin.js"></script>
 </body>
 </html>
