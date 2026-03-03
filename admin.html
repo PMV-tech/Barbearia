@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Barbeiro - Controle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h2 style="color: var(--gold);">Controle Financeiro & Agenda</h2>
+        
+        <div class="stats-row">
+            <div class="card-stat">
+                <h3>Ganhos Pendentes</h3>
+                <p id="ganhosPendentes">R$ 0,00</p>
+            </div>
+            <div class="card-stat">
+                <h3>Total Concluído</h3>
+                <p id="totalGanhos">R$ 0,00</p>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            <section>
+                <h3 style="border-left: 4px solid var(--gold); padding-left: 10px;">Cortes Pendentes</h3>
+                <div id="listaPendentesAdmin"></div>
+            </section>
+            <section>
+                <h3 style="border-left: 4px solid var(--success); padding-left: 10px;">Histórico Concluído</h3>
+                <div id="listaConcluidosAdmin"></div>
+            </section>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Estilo - Agende seu horário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section class="hero">
+        <h1>BARBEARIA ESTILO</h1>
+        <p>O melhor corte da região, no seu horário.</p>
+        <div class="actions">
+            <button class="btn-primary" onclick="prepareNew()">Agendar Horário</button>
+            <button class="btn-secondary" onclick="openModal('modalMeusCortes')">Meus Agendamentos</button>
+        </div>
+    </section>
+
+    <div id="modalAgendar" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalAgendar')">&times;</span>
+            <h3 id="modalTitle">Novo Agendamento</h3>
+            <form id="formAgendamento">
+                <input type="hidden" id="editId">
+                <label>Seu Nome</label>
+                <input type="text" id="nome" placeholder="Ex: João Silva" required>
+                <label>Data</label>
+                <input type="date" id="data" required>
+                <label>Horário</label>
+                <select id="horario" required></select>
+                <label>Serviço</label>
+                <select id="servico" required>
+                    <option value="30">Corte Simples - R$ 30</option>
+                    <option value="15">Barba - R$ 15</option>
+                    <option value="10">Sobrancelha - R$ 10</option>
+                    <option value="45">Cabelo + Barba - R$ 45</option>
+                    <option value="40">Cabelo + Sobrancelha - R$ 40</option>
+                    <option value="55">Cabelo + Barba + Sobrancelha - R$ 55</option>
+                </select>
+                <button type="submit" class="btn-confirmar">Salvar Agendamento</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalMeusCortes" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalMeusCortes')">&times;</span>
+            <h3>Seus Agendamentos</h3>
+            <div id="listaMeusAgendamentos"></div>
+        </div>
+    </div>
+
+    <script src="cliente.js"></script>
+</body>
+</html>
